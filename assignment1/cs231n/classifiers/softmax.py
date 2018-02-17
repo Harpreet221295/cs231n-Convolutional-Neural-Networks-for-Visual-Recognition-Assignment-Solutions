@@ -45,7 +45,14 @@ def softmax_loss_naive(W, X, y, reg):
   loss /= num_train
   loss += 0.5*reg*np.sum(W*W)
   
+  fscores = exp_scores/scores_sum[:,np.newaxis]
 
+  idx = np.zeros_like(fscores)
+  idx[np.arange(num_train),y] = 1
+  dW = X.T.dot(fscores-idx)
+
+  dW /= num_train
+  dW += reg*W
 
 
   #############################################################################
@@ -62,6 +69,8 @@ def softmax_loss_vectorized(W, X, y, reg):
   Inputs and outputs are the same as softmax_loss_naive.
   """
   # Initialize the loss and gradient to zero.
+  num_train = X.shape[0]
+  num_classes = W[1]
   loss = 0.0
   dW = np.zeros_like(W)
 
@@ -71,7 +80,24 @@ def softmax_loss_vectorized(W, X, y, reg):
   # here, it is easy to run into numeric instability. Don't forget the        #
   # regularization!                                                           #
   #############################################################################
-  pass
+  scores = X.dot(W)
+  exp_scores = np.exp(scores)
+  scores_sum = np.sum(exp_scores, axis = 1)
+  exp_label = exp_scores[np.arange(num_train),y]
+
+  softmax_scores = exp_label/scores_sum
+  loss = -1 * np.sum(np.log(softmax_scores))
+  loss /= num_train
+  loss += 0.5*reg*np.sum(W*W)
+  
+  fscores = exp_scores/scores_sum[:,np.newaxis]
+
+  idx = np.zeros_like(fscores)
+  idx[np.arange(num_train),y] = 1
+  dW = X.T.dot(fscores-idx)
+
+  dW /= num_train
+  dW += reg*W
   #############################################################################
   #                          END OF YOUR CODE                                 #
   #############################################################################
