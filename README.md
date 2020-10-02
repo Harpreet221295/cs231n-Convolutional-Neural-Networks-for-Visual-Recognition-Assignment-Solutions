@@ -1,5 +1,8 @@
 # cs231n-Convolutional-Neural-Networks-for-Visual-Recognition-Assignment-Solutions
 ## Course Link: http://cs231n.stanford.edu/
+## Video Lectures: https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv
+
+
 ### Assignment 1 Link: http://cs231n.github.io/assignments2018/assignment1/
 ### Assignment 2 Link: http://cs231n.github.io/assignments2018/assignment2/
 ### Assignment 3 Link: http://cs231n.github.io/assignments2018/assignment3/
